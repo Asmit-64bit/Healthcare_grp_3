@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home & System Overview - UroScan AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero-banner {
+      background: #1a365d;
+      color: #fff;
+      padding: 25px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .hero-banner h1 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .hero-banner p {
+      font-size: 13px;
+      color: #cbd5e0;
+      max-width: 700px;
+      margin-bottom: 15px;
+    }
+    .media-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .media-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .media-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+    .media-card-caption {
+      padding: 10px;
+      font-size: 12px;
+      color: #2d3748;
+      font-weight: 600;
+      text-align: center;
+    }
+    .workflow-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .workflow-step {
+      background: #edf2f7;
+      padding: 12px;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .workflow-step i {
+      font-size: 20px;
+      color: #2b6cb0;
+      margin-bottom: 6px;
+    }
+    .analyte-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .analyte-card {
+      border: 1px solid #e2e8f0;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .video-container {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #cbd5e0;
+      margin-top: 10px;
+    }
+    video {
+      width: 100%;
+      max-height: 320px;
+      display: block;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fa-solid fa-flask-vial"></i>
+        <h2>UroScan AI</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="home.html" class="nav-item active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="patients.html" class="nav-item"><i class="fa-solid fa-user-group"></i> Patients</a>
+        <a href="new-test.html" class="nav-item"><i class="fa-solid fa-vial"></i> New Test</a>
+        <a href="reports.html" class="nav-item"><i class="fa-solid fa-file-medical"></i> Reports</a>
+        <a href="analytics.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Analytics</a>
+        <a href="device.html" class="nav-item"><i class="fa-solid fa-microchip"></i> Device Status</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="#" id="settingsNavBtn" class="nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        <a href="#" id="logoutNavBtn" class="nav-item" style="color: #feb2b2;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="page-title">Home & Platform Overview</div>
+        <div class="user-profile">
+          <div class="user-avatar">DN</div>
+          <span class="user-name">Dr. Ninad</span>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <!-- Hero Section -->
+        <div class="hero-banner">
+          <h1>Point-of-Care Urinalysis Platform</h1>
+          <p>Automated 10-Pad Reagent Strip Reader using Computer Vision & Controlled Colorimetry (Use Case ID: KJS-HC-03)</p>
+          <div style="display: flex; gap: 10px;">
+            <a href="new-test.html" class="btn btn-primary" style="background: #2b6cb0; border: none;"><i class="fa-solid fa-play"></i> Start Test</a>
+            <a href="dashboard.html" class="btn btn-outline" style="color: #fff; border-color: #cbd5e0;"><i class="fa-solid fa-chart-line"></i> Clinical Dashboard</a>
+          </div>
+        </div>
+
+        <!-- Hardware & Laboratory Facility Gallery -->
+        <div class="card">
+          <div class="card-title">Laboratory Facilities & Hardware System</div>
+          <div class="media-gallery-grid">
+            <div class="media-card">
+              <img src="assets/images/analyser.webp" alt="Automated Strip Reader">
+              <div class="media-card-caption">UroScan Reader Unit</div>
+            </div>
+            <div class="media-card">
+              <img src="assets/images/urine_strip.webp" alt="10 Reagent Pad Strip">
+              <div class="media-card-caption">10-Pad Reagent Strip</div>
+            </div>
+            <div class="media-card">
+              <img src="assets/images/lab_room.webp" alt="Clinical Pathology Lab">
+              <div class="media-card-caption">Pathology Laboratory</div>
+            </div>
+            <div class="media-card">
+              <img src="assets/images/blood_collection.webp" alt="Sample Collection">
+              <div class="media-card-caption">Sample Collection Unit</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Demonstration Video 
+        <div class="card">
+          <div class="card-title">Point-of-Care Demonstration Video</div>
+          <p style="font-size: 12px; color: #718096;">Demonstration of the automated optical strip scanning hardware and camera alignment chamber.</p>
+          <div class="video-container">
+            <video controls poster="assets/images/analyser.webp">
+              <source src="assets/videos/demo.mp4" type="video/mp4">
+              Your browser does not support video playback.
+            </video>
+          </div>
+        </div> -->
+
+        <!-- Importance Cards -->
+        <div class="card">
+          <div class="card-title">Clinical Importance & Key Advantages</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+            <div style="background: #edf2f7; padding: 12px; border-radius: 4px;">
+              <strong style="color: #1a365d;"><i class="fa-solid fa-eye-slash" style="color: #2b6cb0;"></i> Objective Readings</strong>
+              <p style="font-size: 12px; color: #4a5568; margin-top: 4px;">Eliminates visual reader bias and optical lighting glare through standardized camera RGB color extraction.</p>
+            </div>
+
+            <div style="background: #edf2f7; padding: 12px; border-radius: 4px;">
+              <strong style="color: #1a365d;"><i class="fa-solid fa-clock" style="color: #276749;"></i> Precise Timing</strong>
+              <p style="font-size: 12px; color: #4a5568; margin-top: 4px;">Automates the exact 120-second chemical reaction development window for peak color measurement accuracy.</p>
+            </div>
+
+            <div style="background: #edf2f7; padding: 12px; border-radius: 4px;">
+              <strong style="color: #1a365d;"><i class="fa-solid fa-heart-pulse" style="color: #c05621;"></i> Early Screening</strong>
+              <p style="font-size: 12px; color: #4a5568; margin-top: 4px;">Rapid point-of-care detection for Diabetes, Kidney Disorders, UTIs, and Liver Dysfunction across 10 analytes.</p>
+            </div>
+
+            <div style="background: #edf2f7; padding: 12px; border-radius: 4px;">
+              <strong style="color: #1a365d;"><i class="fa-solid fa-microchip" style="color: #4c51bf;"></i> Portable POC Hardware</strong>
+              <p style="font-size: 12px; color: #4a5568; margin-top: 4px;">Combines Raspberry Pi 5, 12MP camera, and LED illumination enclosure for affordable laboratory deployment.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5-Step System Architecture Workflow -->
+        <div class="card">
+          <div class="card-title">Point-of-Care Colorimetry Pipeline</div>
+          <div class="workflow-steps">
+            <div class="workflow-step">
+              <i class="fa-solid fa-vial"></i>
+              <div><strong>1. Strip Insertion</strong></div>
+              <div style="color: #718096; margin-top: 2px;">10-Pad Reagent Strip</div>
+            </div>
+            <div class="workflow-step">
+              <i class="fa-solid fa-lightbulb"></i>
+              <div><strong>2. LED Illumination</strong></div>
+              <div style="color: #718096; margin-top: 2px;">Uniform Darkroom Chamber</div>
+            </div>
+            <div class="workflow-step">
+              <i class="fa-solid fa-camera"></i>
+              <div><strong>3. Camera Scan</strong></div>
+              <div style="color: #718096; margin-top: 2px;">12MP Optical Sensor</div>
+            </div>
+            <div class="workflow-step">
+              <i class="fa-solid fa-brain"></i>
+              <div><strong>4. AI CV Analysis</strong></div>
+              <div style="color: #718096; margin-top: 2px;">RGB Color Regression</div>
+            </div>
+            <div class="workflow-step">
+              <i class="fa-solid fa-file-medical"></i>
+              <div><strong>5. Digital Report</strong></div>
+              <div style="color: #718096; margin-top: 2px;">Pathologist Review & Save</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10 Analyte Scope -->
+        <div class="card">
+          <div class="card-title">10 Analyte Diagnostic Scope</div>
+          <div class="analyte-grid">
+            <div class="analyte-card"><strong>GLU (Glucose)</strong>: Diabetes mellitus screening</div>
+            <div class="analyte-card"><strong>PRO (Protein)</strong>: Kidney disease & proteinuria</div>
+            <div class="analyte-card"><strong>pH</strong>: Acid-base metabolic status</div>
+            <div class="analyte-card"><strong>KET (Ketones)</strong>: Diabetic ketoacidosis & starvation</div>
+            <div class="analyte-card"><strong>BLO (Blood)</strong>: Hematuria & renal tract injury</div>
+            <div class="analyte-card"><strong>BIL (Bilirubin)</strong>: Liver disease & bile duct obstruction</div>
+            <div class="analyte-card"><strong>URO (Urobilinogen)</strong>: Liver dysfunction & hemolysis</div>
+            <div class="analyte-card"><strong>NIT (Nitrite)</strong>: Bacterial urinary tract infection</div>
+            <div class="analyte-card"><strong>LEU (Leucocytes)</strong>: Urinary tract inflammation</div>
+            <div class="analyte-card"><strong>SG (Specific Gravity)</strong>: Renal concentrating ability</div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        UroScan AI &bull; KJS-HC-03
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/mockData.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
