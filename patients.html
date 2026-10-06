@@ -36,7 +36,7 @@
         <div class="page-title">Patient Directory</div>
         <div class="user-profile">
           <div class="user-avatar">DN</div>
-          <span>Dr. Ninad</span>
+          <span class="user-name">Dr. Ninad</span>
         </div>
       </header>
 
@@ -79,12 +79,12 @@
       </main>
 
       <footer class="app-footer">
-        UroScan AI &bull; KJS-HC-03 Academic Prototype
+        UroScan AI &bull; KJS-HC-03
       </footer>
     </div>
   </div>
 
-  <!-- Register Patient Modal -->
+  <!-- Register Patient Modal with DOB -->
   <div id="registerModal" class="modal-backdrop">
     <div class="modal-dialog">
       <div class="page-header" style="margin-bottom: 15px;">
@@ -119,9 +119,16 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Contact Number</label>
-          <input type="text" id="regContact" class="form-control" required>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="form-group">
+            <label class="form-label">Date of Birth (DOB)</label>
+            <input type="date" id="regDob" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Contact Number</label>
+            <input type="text" id="regContact" class="form-control" required>
+          </div>
         </div>
 
         <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px;">

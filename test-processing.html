@@ -43,7 +43,7 @@
         <div class="page-title">Test Processing</div>
         <div class="user-profile">
           <div class="user-avatar">DN</div>
-          <span>Dr. Ninad</span>
+          <span class="user-name">Dr. Ninad</span>
         </div>
       </header>
 
@@ -90,7 +90,7 @@
       </main>
 
       <footer class="app-footer">
-        UroScan AI &bull; KJS-HC-03 Academic Prototype
+        UroScan AI &bull; KJS-HC-03
       </footer>
     </div>
   </div>
@@ -110,14 +110,14 @@
       const initialAnalytes = {
         glucose: { val: "Developing...", padCode: "GLU", padColor: "#e2e8f0" },
         protein: { val: "Developing...", padCode: "PRO", padColor: "#e2e8f0" },
-        ph: { val: "Developing...", padCode: "pH", padColor: "#276749" },
+        ph: { val: "Developing...", padCode: "pH", padColor: "#059669" },
         ketones: { val: "Developing...", padCode: "KET", padColor: "#e2e8f0" },
         blood: { val: "Developing...", padCode: "BLO", padColor: "#e2e8f0" },
         bilirubin: { val: "Developing...", padCode: "BIL", padColor: "#e2e8f0" },
         urobilinogen: { val: "Developing...", padCode: "URO", padColor: "#93c5fd" },
         nitrite: { val: "Developing...", padCode: "NIT", padColor: "#e2e8f0" },
         leucocytes: { val: "Developing...", padCode: "LEU", padColor: "#e2e8f0" },
-        specificGravity: { val: "Developing...", padCode: "SG", padColor: "#1a365d" }
+        specificGravity: { val: "Developing...", padCode: "SG", padColor: "#1e3a8a" }
       };
 
       $("#processingStripContainer").html(renderUrineStripHtml(initialAnalytes, "procStrip"));
@@ -140,7 +140,38 @@
 
         if (progress >= 100) {
           clearInterval(interval);
-          showToast("Analysis Complete", "Redirecting to results...");
+          
+          // Get local device timestamp dynamically via getDeviceFormattedDateTime(0)
+          const deviceTimestamp = getDeviceFormattedDateTime(0);
+
+          const generatedTest = {
+            testId: testMeta.testId,
+            patientId: testMeta.patientId,
+            patientName: testMeta.patientName,
+            patientAge: testMeta.patientAge || 45,
+            patientGender: testMeta.patientGender || "Male",
+            timestamp: deviceTimestamp,
+            status: "Review",
+            reviewStatus: "Pending",
+            confidence: 94,
+            notes: "Elevated protein and glucose detected. Clinical review advised.",
+            analytes: {
+              glucose: { val: "100 mg/dL", padCode: "+", status: "Review", padColor: "#D97706", ref: "Negative" },
+              protein: { val: "30 mg/dL", padCode: "+", status: "Review", padColor: "#F59E0B", ref: "Negative (<15 mg/dL)" },
+              ph: { val: "6.2", padCode: "6.2", status: "Normal", padColor: "#059669", ref: "5.0 - 7.5" },
+              ketones: { val: "0 mg/dL", padCode: "Neg", status: "Normal", padColor: "#E2E8F0", ref: "Negative" },
+              blood: { val: "Negative", padCode: "Neg", status: "Normal", padColor: "#E2E8F0", ref: "Negative" },
+              bilirubin: { val: "Negative", padCode: "Neg", status: "Normal", padColor: "#E2E8F0", ref: "Negative" },
+              urobilinogen: { val: "1.0 mg/dL", padCode: "1.0", status: "Normal", padColor: "#93C5FD", ref: "0.2 - 1.0 mg/dL" },
+              nitrite: { val: "Negative", padCode: "Neg", status: "Normal", padColor: "#E2E8F0", ref: "Negative" },
+              leucocytes: { val: "Negative", padCode: "Neg", status: "Normal", padColor: "#E2E8F0", ref: "Negative" },
+              specificGravity: { val: "1.015", padCode: "1.015", status: "Normal", padColor: "#1E3A8A", ref: "1.005 - 1.030" }
+            }
+          };
+
+          saveTest(generatedTest);
+
+          showToast("Report Saved", `Report REP-${testMeta.testId.split('-')[1]} created at ${deviceTimestamp}.`);
           setTimeout(function () {
             window.location.href = `results.html?id=${encodeURIComponent(testMeta.testId)}`;
           }, 800);

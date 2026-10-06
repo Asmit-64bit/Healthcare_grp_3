@@ -1,11 +1,11 @@
 /**
- * UrinaSense - Patient Management Controller (jQuery)
+ * UroScan AI - Patient Management Controller (jQuery)
+ * Includes dynamic DOB & Age auto-calculation logic.
  */
 
 $(document).ready(function () {
   renderPatientsTable();
 
-  // jQuery Patient Search Filter
   $("#patientSearchInput").on("keyup", function () {
     const query = $(this).val().toLowerCase();
     renderPatientsTable(query);
@@ -16,18 +16,34 @@ $(document).ready(function () {
     const nextId = "P-" + (10240 + getPatients().length + 1);
     $("#regId").val(nextId);
     $("#regName").val("");
-    $("#regAge").val("");
+    $("#regAge").val("40");
+    $("#regDob").val("1986-05-15");
     $("#regContact").val("");
-    $(".form-error").hide();
     
     $("#registerModal").fadeIn(200).css("display", "flex");
+  });
+
+  // Dynamic Age calculation from DOB date selection
+  $("#regDob").on("change", function () {
+    const dobVal = $(this).val();
+    if (dobVal) {
+      const birthDate = new Date(dobVal);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      if (age >= 0) {
+        $("#regAge").val(age);
+      }
+    }
   });
 
   // Handle Form Submission with jQuery Validation
   $("#registerPatientForm").on("submit", function (e) {
     e.preventDefault();
 
-    let isValid = true;
     const name = $("#regName").val().trim();
     const age = $("#regAge").val();
     const gender = $("#regGender").val();
@@ -35,46 +51,30 @@ $(document).ready(function () {
     const contact = $("#regContact").val().trim();
     const id = $("#regId").val();
 
-    $(".form-error").hide();
-
-    if (!name) {
-      $("#regNameErr").fadeIn();
-      isValid = false;
-    }
-    if (!age || age <= 0 || age > 120) {
-      $("#regAgeErr").fadeIn();
-      isValid = false;
-    }
-    if (!contact) {
-      $("#regContactErr").fadeIn();
-      isValid = false;
+    if (!name || !age || !contact || !dob) {
+      showToast("Validation Error", "Please fill in all required patient fields.");
+      return;
     }
 
-    if (!isValid) return;
-
-    // Save Patient Object
     const newPatient = {
       id: id,
       name: name,
       age: parseInt(age, 10),
       gender: gender,
-      dob: dob || "1990-01-01",
+      dob: dob,
       contact: contact,
-      regDate: new Date().toISOString().split("T")[0],
+      regDate: getDeviceFormattedDate(0),
       status: "Active"
     };
 
     savePatient(newPatient);
 
-    showToast("Patient Registered", `Registered ${name} (${id}) successfully.`, "success");
+    showToast("Patient Registered", `Registered ${name} (${id}) successfully.`);
     closeModal("#registerModal");
     renderPatientsTable();
   });
 });
 
-/**
- * Render Patients Table with jQuery
- */
 function renderPatientsTable(query = "") {
   const patients = getPatients();
   const tests = getTests();
@@ -94,7 +94,7 @@ function renderPatientsTable(query = "") {
   if (filtered.length === 0) {
     tbody.append(`
       <tr>
-        <td colspan="7" style="text-align: center; color: var(--text-secondary); padding: 24px;">
+        <td colspan="7" style="text-align: center; color: #718096; padding: 15px;">
           No matching patients found.
         </td>
       </tr>
@@ -103,7 +103,6 @@ function renderPatientsTable(query = "") {
   }
 
   filtered.forEach(p => {
-    // Find last test for patient
     const pTests = tests.filter(t => t.patientId === p.id);
     const lastTest = pTests.length > 0 ? pTests[0].timestamp : "No tests yet";
 
@@ -111,7 +110,7 @@ function renderPatientsTable(query = "") {
       <tr>
         <td><strong>${escapeHtml(p.id)}</strong></td>
         <td>
-          <a href="patient-profile.html?id=${encodeURIComponent(p.id)}" style="font-weight: 600; color: var(--primary-navy)">
+          <a href="patient-profile.html?id=${encodeURIComponent(p.id)}" style="font-weight: 600;">
             ${escapeHtml(p.name)}
           </a>
         </td>
@@ -119,19 +118,11 @@ function renderPatientsTable(query = "") {
         <td>${escapeHtml(p.contact)}</td>
         <td>${escapeHtml(lastTest)}</td>
         <td>
-          <span class="badge badge-normal">
-            <span class="badge-dot"></span> Active
-          </span>
+          <span class="badge badge-normal">Active</span>
         </td>
         <td>
-          <div style="display: flex; gap: 8px;">
-            <a href="patient-profile.html?id=${encodeURIComponent(p.id)}" class="btn btn-outline btn-sm" title="View Profile">
-              <i class="fa-solid fa-id-card"></i> Profile
-            </a>
-            <a href="new-test.html?patientId=${encodeURIComponent(p.id)}" class="btn btn-accent btn-sm" title="Initiate New Test">
-              <i class="fa-solid fa-vial"></i> Test
-            </a>
-          </div>
+          <a href="patient-profile.html?id=${encodeURIComponent(p.id)}" class="btn btn-outline" style="padding: 3px 8px; font-size: 11px;">Profile</a>
+          <a href="new-test.html?patientId=${encodeURIComponent(p.id)}" class="btn btn-primary" style="padding: 3px 8px; font-size: 11px;">Test</a>
         </td>
       </tr>
     `;

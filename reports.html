@@ -36,7 +36,7 @@
         <div class="page-title">Diagnostic Reports Archive</div>
         <div class="user-profile">
           <div class="user-avatar">DN</div>
-          <span>Dr. Ninad</span>
+          <span class="user-name">Dr. Ninad</span>
         </div>
       </header>
 
@@ -44,7 +44,7 @@
         <div class="page-header">
           <div>
             <h1>Urinalysis Reports</h1>
-            <p style="font-size: 13px; color: #718096;">Digital laboratory reports</p>
+            <p style="font-size: 13px; color: #718096;">Saved digital laboratory reports archive</p>
           </div>
         </div>
 
@@ -72,11 +72,14 @@
           </div>
         </div>
 
-        <!-- Printable Report Preview Container -->
+        <!-- Printable & Saved Report Preview Container -->
         <div class="card" id="printableReportCard" style="display: none;">
           <div class="page-header" style="margin-bottom: 15px;">
             <button class="btn btn-outline" id="backToReportsBtn"><i class="fa-solid fa-arrow-left"></i> Back</button>
-            <button class="btn btn-primary" id="triggerPrintBtn"><i class="fa-solid fa-print"></i> Print Report</button>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-outline btn-download-report btn-download-active-report"><i class="fa-solid fa-download"></i> Save Report File</button>
+              <button class="btn btn-primary" id="triggerPrintBtn"><i class="fa-solid fa-print"></i> Print Report</button>
+            </div>
           </div>
 
           <div id="officialReportView" style="padding: 15px; background: #fff; border: 1px solid #cbd5e0; border-radius: 4px;">
@@ -142,7 +145,7 @@
       </main>
 
       <footer class="app-footer">
-        UroScan AI &bull; KJS-HC-03 Academic Prototype
+        UroScan AI &bull; KJS-HC-03
       </footer>
     </div>
   </div>

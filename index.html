@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - UroScan AI</title>
+  <title>Login & Registration - UroScan AI</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -13,18 +13,44 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      padding: 20px;
     }
-    .login-card {
+    .auth-card {
       background: #fff;
       padding: 25px;
       border-radius: 8px;
       width: 100%;
-      max-width: 360px;
+      max-width: 400px;
     }
-    .login-title {
+    .auth-title {
       text-align: center;
       margin-bottom: 15px;
       color: #1a365d;
+    }
+    .auth-tabs {
+      display: flex;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 15px;
+    }
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #718096;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+    .auth-tab.active {
+      color: #2b6cb0;
+      border-bottom-color: #2b6cb0;
+    }
+    .auth-form {
+      display: none;
+    }
+    .auth-form.active {
+      display: block;
     }
     .demo-box {
       background: #ebf8ff;
@@ -34,25 +60,53 @@
       border-radius: 4px;
       margin-bottom: 15px;
     }
+    .auth-error {
+      background: #fed7d7;
+      color: #9b2c2c;
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      display: none;
+    }
+    .auth-success {
+      background: #c6f6d5;
+      color: #276749;
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-  <div class="login-card">
-    <div class="login-title">
+  <div class="auth-card">
+    <div class="auth-title">
       <h2>UroScan AI</h2>
       <p style="font-size: 12px; color: #718096;">Point-of-Care Urinalysis Platform</p>
     </div>
 
-    <div class="demo-box">
-      <strong>Demo Login Credentials:</strong><br>
-      Email: doctor@uroscan.demo<br>
-      Password: demo123
+    <!-- Auth Mode Tabs -->
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="tabSignIn">Sign In</div>
+      <div class="auth-tab" id="tabRegister">Register</div>
     </div>
 
-    <form id="loginForm">
+    <div id="authAlertError" class="auth-error"></div>
+    <div id="authAlertSuccess" class="auth-success"></div>
+
+    <!-- 1. SIGN IN FORM -->
+    <form id="signInForm" class="auth-form active" novalidate>
+      <div class="demo-box">
+        <strong>Demo Login Credentials:</strong><br>
+        Email: doctor@uroscan.demo<br>
+        Password: demo123
+      </div>
+
       <div class="form-group">
-        <label class="form-label">Email</label>
+        <label class="form-label">Email Address</label>
         <input type="email" id="loginEmail" class="form-control" value="doctor@uroscan.demo" required>
       </div>
 
@@ -66,6 +120,43 @@
       </button>
     </form>
 
+    <!-- 2. REGISTER FORM -->
+    <form id="registerForm" class="auth-form" novalidate>
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" id="regName" class="form-control" placeholder="Dr. Jane Doe" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" id="regEmail" class="form-control" placeholder="doctor@hospital.org" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Clinical Role</label>
+        <select id="regRole" class="form-control">
+          <option value="Lead Pathologist">Lead Pathologist</option>
+          <option value="Consultant Pathologist">Consultant Pathologist</option>
+          <option value="Lab Technician">Lab Technician</option>
+          <option value="Medical Officer">Medical Officer</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" id="regPassword" class="form-control" placeholder="At least 6 characters" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Confirm Password</label>
+        <input type="password" id="regConfirmPassword" class="form-control" placeholder="Re-enter password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+        <i class="fa-solid fa-user-plus"></i> Create Account
+      </button>
+    </form>
+
     <div style="margin-top: 15px; font-size: 11px; color: #718096; text-align: center;">
       Academic Prototype (KJS-HC-03) &bull; Simulated Data Only
     </div>
@@ -76,17 +167,91 @@
   <script src="js/app.js"></script>
   <script>
     $(document).ready(function() {
-      $('#loginForm').on('submit', function(e) {
+
+      // Tab Toggle
+      $('#tabSignIn').on('click', function() {
+        $('.auth-tab').removeClass('active');
+        $(this).addClass('active');
+        $('.auth-form').removeClass('active');
+        $('#signInForm').addClass('active');
+        $('#authAlertError').hide();
+        $('#authAlertSuccess').hide();
+      });
+
+      $('#tabRegister').on('click', function() {
+        $('.auth-tab').removeClass('active');
+        $(this).addClass('active');
+        $('.auth-form').removeClass('active');
+        $('#registerForm').addClass('active');
+        $('#authAlertError').hide();
+        $('#authAlertSuccess').hide();
+      });
+
+      // Handle Sign In Form Submission
+      $('#signInForm').on('submit', function(e) {
         e.preventDefault();
+        $('#authAlertError').hide();
+        $('#authAlertSuccess').hide();
+
         const email = $('#loginEmail').val().trim();
         const password = $('#loginPassword').val().trim();
 
-        if (email && password) {
-          localStorage.setItem('uroscan_auth', 'true');
-          showToast('Login Successful', 'Welcome Dr. Ninad');
+        if (!email || !password) {
+          $('#authAlertError').text('Please fill in both email and password fields.').show();
+          return;
+        }
+
+        const result = authenticateUser(email, password);
+        if (result.success) {
+          $('#authAlertSuccess').text(`Welcome back, ${result.user.name}! Redirecting...`).show();
           setTimeout(function() {
             window.location.href = 'dashboard.html';
-          }, 500);
+          }, 600);
+        } else {
+          $('#authAlertError').text(result.message).show();
+        }
+      });
+
+      // Handle Register Form Submission
+      $('#registerForm').on('submit', function(e) {
+        e.preventDefault();
+        $('#authAlertError').hide();
+        $('#authAlertSuccess').hide();
+
+        const name = $('#regName').val().trim();
+        const email = $('#regEmail').val().trim();
+        const role = $('#regRole').val();
+        const password = $('#regPassword').val().trim();
+        const confirmPassword = $('#regConfirmPassword').val().trim();
+
+        if (!name) {
+          $('#authAlertError').text('Full name is required.').show();
+          return;
+        }
+        if (!email || !email.includes('@')) {
+          $('#authAlertError').text('Please enter a valid email address.').show();
+          return;
+        }
+        if (!password || password.length < 6) {
+          $('#authAlertError').text('Password must be at least 6 characters long.').show();
+          return;
+        }
+        if (password !== confirmPassword) {
+          $('#authAlertError').text('Passwords do not match.').show();
+          return;
+        }
+
+        // Execute registration in localStorage
+        const res = registerUser(name, email, password, role);
+        if (res.success) {
+          // Auto sign-in
+          authenticateUser(email, password);
+          $('#authAlertSuccess').text(`Account created successfully for ${name}! Redirecting...`).show();
+          setTimeout(function() {
+            window.location.href = 'dashboard.html';
+          }, 700);
+        } else {
+          $('#authAlertError').text(res.message).show();
         }
       });
     });
