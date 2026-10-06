@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Patient Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header style="background-color: #0f5c73; padding: 18px 24px; border-bottom: 4px solid #0a3d4d; text-align: center;">
+            <h1 style="color: #ffe08a; margin: 0;">Clinical Diagnostics Portal</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="laboratory-tests.html">Laboratory Tests</a></li>
+                <li><a href="test-price-table.html">Price List</a></li>
+                <li><a href="patient-registration.html">Online Registration</a></li>
+                <li><a href="lab-map.html">Interactive Strip Map</a></li>
+                <li><a href="urine-report.html">AI Diagnostic Report</a></li>
+                <li><a href="gallery.html">Facilities Gallery</a></li>
+                <li><a href="test-details.html">Test Details</a></li>
+                <li><a href="exp5-tasks.html">Exp 5 Tasks</a></li>
+            </ul>
+        </nav>
+        <div class="main-container">
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3>Registration Instructions</h3>
+                    <ul>
+                        <li>Fill in accurate patient details.</li>
+                        <li>Select home or lab collection.</li>
+                        <li>Upload valid prescription if required.</li>
+                        <li>Confirmation SMS will be sent.</li>
+                    </ul>
+                </div>
+            </aside>
+            <main class="content">
+                <h2>Online Patient Registration Form</h2>
+                <form id="registrationForm" action="#" method="POST" novalidate>
+                    <fieldset>
+                        <legend>Patient Demographics</legend>
+                        <label for="pname">Full Name:</label>
+                        <input type="text" id="pname" name="pname"  required autofocus>
+                        <label for="patientId">Patient ID:</label>
+                        <input type="text" id="patientId" name="patientId" >
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age"  required>
+                        <div style="margin-bottom: 16px;">
+                            <label>Gender:</label><br>
+                            <input type="radio" id="male" name="gender" value="Male" required>
+                            <label for="male" style="font-weight: normal; margin-right: 14px;">Male</label>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female" style="font-weight: normal;">Female</label>
+                        </div>
+                        <label for="mobile">Mobile Number:</label>
+                        <input type="tel" id="mobile" name="mobile"  required>
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" >
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Test & Appointment Booking</legend>
+                        <label for="test">Select Laboratory Test / Package:</label>
+                        <select id="test" name="test" required>
+                            <option value="">-- Select Test --</option>
+                            <option value="cbc">Complete Blood Count (CBC)</option>
+                            <option value="urine">Routine Urine Analysis (KJS-HC-03)</option>
+                            <option value="lft">Liver Function Test (LFT)</option>
+                            <option value="basic_pkg">Basic Health Check Package</option>
+                            <option value="exec_pkg">Executive Wellness Package</option>
+                        </select>
+                        <label for="appointment">Preferred Appointment Date:</label>
+                        <input type="date" id="appointment" name="appointment" required>
+                        <div style="margin-bottom: 16px;">
+                            <label>Sample Collection Preference:</label><br>
+                            <input type="radio" id="home" name="sample" value="Home" required> 
+                            <label for="home" style="font-weight: normal; margin-right: 14px;">Home Collection</label>
+                            <input type="radio" id="lab" name="sample" value="Lab"> 
+                            <label for="lab" style="font-weight: normal;">Visit Laboratory</label>
+                        </div>
+                        <label for="prescription">Upload Doctor Prescription (Optional):</label><br>
+                        <input type="file" id="prescription" name="prescription" accept=".pdf, .jpg, .png" style="margin-top: 6px;">
+                    </fieldset>
+                    <div id="formMessage" style="margin-top: 15px;"></div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <input type="submit" value="Submit Registration">
+                        <input type="reset" value="Clear Form">
+                    </div>
+                </form>
+            </main>
+        </div>
+        <footer>
+            <p>&copy; 2026 Clinical Laboratory Management Portal. K. J. Somaiya School of Engineering.</p>
+        </footer>
+    </div>
+    <script src="validation.js"></script>
+</body>
+</html>

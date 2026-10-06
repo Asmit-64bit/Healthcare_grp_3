@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Processing - UroScan AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .proc-box {
+      max-width: 500px;
+      margin: 20px auto;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fa-solid fa-flask-vial"></i>
+        <h2>UroScan AI</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="patients.html" class="nav-item"><i class="fa-solid fa-user-group"></i> Patients</a>
+        <a href="new-test.html" class="nav-item active"><i class="fa-solid fa-vial"></i> New Test</a>
+        <a href="reports.html" class="nav-item"><i class="fa-solid fa-file-medical"></i> Reports</a>
+        <a href="analytics.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Analytics</a>
+        <a href="device.html" class="nav-item"><i class="fa-solid fa-microchip"></i> Device Status</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="#" id="settingsNavBtn" class="nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        <a href="#" id="logoutNavBtn" class="nav-item" style="color: #feb2b2;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="page-title">Test Processing</div>
+        <div class="user-profile">
+          <div class="user-avatar">DN</div>
+          <span>Dr. Ninad</span>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="proc-box">
+          <div class="card mb-3">
+            <h2 id="procTestId" style="color: #1a365d; font-size: 18px;">URINE STRIP ANALYSIS &bull; UT-1046</h2>
+            <p id="procPatientMeta" style="color: #718096; font-size: 13px;">Patient: Ramesh Sharma (P-10241)</p>
+          </div>
+
+          <div class="card mb-3">
+            <div style="font-size: 32px; font-weight: bold; color: #2b6cb0;" id="procPercent">0%</div>
+            <div id="procTimerLabel" style="font-size: 13px; color: #718096; margin-bottom: 15px;">120s Reaction Timer</div>
+
+            <div id="processingStripContainer"></div>
+          </div>
+
+          <div class="card text-start">
+            <div class="card-title">Analysis Pipeline</div>
+            <div class="step-sequence">
+              <div class="step-item active" id="step1">
+                <div class="step-icon"><i class="fa-solid fa-spinner fa-spin"></i></div>
+                <div>1. Strip Insertion & Detection</div>
+              </div>
+              <div class="step-item pending" id="step2">
+                <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+                <div>2. 120-Second Reaction Color Development</div>
+              </div>
+              <div class="step-item pending" id="step3">
+                <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+                <div>3. High-Resolution Image Capture</div>
+              </div>
+              <div class="step-item pending" id="step4">
+                <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+                <div>4. Computer Vision Pad Analysis</div>
+              </div>
+              <div class="step-item pending" id="step5">
+                <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+                <div>5. AI Concentration Estimation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        UroScan AI &bull; KJS-HC-03 Academic Prototype
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/mockData.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    $(document).ready(function () {
+      const currentTestData = localStorage.getItem("uroscan_current_test");
+      let testMeta = { testId: "UT-1046", patientId: "P-10241", patientName: "Ramesh Sharma" };
+      if (currentTestData) testMeta = JSON.parse(currentTestData);
+
+      $("#procTestId").text(`URINE STRIP ANALYSIS • ${testMeta.testId}`);
+      $("#procPatientMeta").text(`Patient: ${testMeta.patientName} (${testMeta.patientId})`);
+
+      const initialAnalytes = {
+        glucose: { val: "Developing...", padCode: "GLU", padColor: "#e2e8f0" },
+        protein: { val: "Developing...", padCode: "PRO", padColor: "#e2e8f0" },
+        ph: { val: "Developing...", padCode: "pH", padColor: "#276749" },
+        ketones: { val: "Developing...", padCode: "KET", padColor: "#e2e8f0" },
+        blood: { val: "Developing...", padCode: "BLO", padColor: "#e2e8f0" },
+        bilirubin: { val: "Developing...", padCode: "BIL", padColor: "#e2e8f0" },
+        urobilinogen: { val: "Developing...", padCode: "URO", padColor: "#93c5fd" },
+        nitrite: { val: "Developing...", padCode: "NIT", padColor: "#e2e8f0" },
+        leucocytes: { val: "Developing...", padCode: "LEU", padColor: "#e2e8f0" },
+        specificGravity: { val: "Developing...", padCode: "SG", padColor: "#1a365d" }
+      };
+
+      $("#processingStripContainer").html(renderUrineStripHtml(initialAnalytes, "procStrip"));
+
+      let progress = 0;
+      const interval = setInterval(function () {
+        progress += 4;
+        $("#procPercent").text(`${progress}%`);
+        $("#procTimerLabel").text(`${Math.max(0, Math.round(120 * (1 - progress/100)))}s Reaction`);
+
+        if (progress >= 25 && progress < 50) {
+          updateStep("#step1", "#step2");
+        } else if (progress >= 50 && progress < 75) {
+          updateStep("#step2", "#step3");
+        } else if (progress >= 75 && progress < 90) {
+          updateStep("#step3", "#step4");
+        } else if (progress >= 90) {
+          updateStep("#step4", "#step5");
+        }
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          showToast("Analysis Complete", "Redirecting to results...");
+          setTimeout(function () {
+            window.location.href = `results.html?id=${encodeURIComponent(testMeta.testId)}`;
+          }, 800);
+        }
+      }, 350);
+
+      function updateStep(prev, current) {
+        $(prev).removeClass("active").addClass("done").find(".step-icon").html('<i class="fa-solid fa-check"></i>');
+        $(current).removeClass("pending").addClass("active").find(".step-icon").html('<i class="fa-solid fa-spinner fa-spin"></i>');
+      }
+    });
+  </script>
+</body>
+</html>

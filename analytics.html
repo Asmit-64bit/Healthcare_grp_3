@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics - UroScan AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fa-solid fa-flask-vial"></i>
+        <h2>UroScan AI</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="patients.html" class="nav-item"><i class="fa-solid fa-user-group"></i> Patients</a>
+        <a href="new-test.html" class="nav-item"><i class="fa-solid fa-vial"></i> New Test</a>
+        <a href="reports.html" class="nav-item"><i class="fa-solid fa-file-medical"></i> Reports</a>
+        <a href="analytics.html" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Analytics</a>
+        <a href="device.html" class="nav-item"><i class="fa-solid fa-microchip"></i> Device Status</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="#" id="settingsNavBtn" class="nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        <a href="#" id="logoutNavBtn" class="nav-item" style="color: #feb2b2;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="page-title">Diagnostic Analytics</div>
+        <div class="user-profile">
+          <div class="user-avatar">DN</div>
+          <span>Dr. Ninad</span>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1>Diagnostic Analytics</h1>
+            <p style="font-size: 13px; color: #718096;">Population metrics & analyte trends</p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label class="form-label" style="margin: 0;">Filter:</label>
+            <select id="timeRangeFilter" class="form-control" style="width: 140px;">
+              <option value="7">Last 7 Days</option>
+              <option value="30">Last 30 Days</option>
+              <option value="90">Last 3 Months</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div>
+              <div class="stat-value" id="kpiTotalTests">25</div>
+              <div class="stat-label">Total Tests</div>
+            </div>
+            <i class="fa-solid fa-chart-line" style="font-size: 20px; color: #2b6cb0;"></i>
+          </div>
+
+          <div class="stat-card">
+            <div>
+              <div class="stat-value" id="kpiNormalCount">18</div>
+              <div class="stat-label">Normal Results</div>
+            </div>
+            <i class="fa-solid fa-circle-check" style="font-size: 20px; color: #276749;"></i>
+          </div>
+
+          <div class="stat-card">
+            <div>
+              <div class="stat-value" id="kpiReviewCount">7</div>
+              <div class="stat-label">Requires Review</div>
+            </div>
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 20px; color: #c05621;"></i>
+          </div>
+
+          <div class="stat-card">
+            <div>
+              <div class="stat-value" id="kpiAvgConfidence">94.6%</div>
+              <div class="stat-label">Avg AI Confidence</div>
+            </div>
+            <i class="fa-solid fa-brain" style="font-size: 20px; color: #4c51bf;"></i>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+          <div class="card">
+            <div class="card-title">1. Tests Performed Over Time</div>
+            <div style="height: 200px;"><canvas id="chartOverTime"></canvas></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">2. Normal vs Review Distribution</div>
+            <div style="height: 200px;"><canvas id="chartDistribution"></canvas></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">3. Glucose Trend</div>
+            <div style="height: 200px;"><canvas id="chartGlucoseTrend"></canvas></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">4. Protein Trend</div>
+            <div style="height: 200px;"><canvas id="chartProteinTrend"></canvas></div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        UroScan AI &bull; KJS-HC-03 Academic Prototype
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/mockData.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>

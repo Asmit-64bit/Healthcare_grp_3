@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urine Protein Test Parameter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        .parameter-card {
+            background: #ffffff;
+            border-left: 6px solid #0f5c73;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 18px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        .color-scale {
+            display: flex;
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .color-block {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header style="background-color: #0f5c73; padding: 18px 24px; border-bottom: 4px solid #0a3d4d; text-align: center;">
+            <h1 style="color: #ffe08a; margin: 0;">Clinical Diagnostics Portal</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="laboratory-tests.html">Laboratory Tests</a></li>
+                <li><a href="test-price-table.html">Price List</a></li>
+                <li><a href="patient-registration.html">Online Registration</a></li>
+                <li><a href="lab-map.html">Interactive Strip Map</a></li>
+                <li><a href="urine-report.html">AI Diagnostic Report</a></li>
+                <li><a href="gallery.html">Facilities Gallery</a></li>
+            </ul>
+        </nav>
+        <div class="main-container">
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3>Protein Error of Indicators</h3>
+                    <p>Based on tetrabromphenol blue pH indicator error, transitioning yellow (negative) to turquoise/blue green (positive albumin).</p>
+                </div>
+            </aside>
+            <main class="content">
+                <h2>Reagent Pad 2: Protein (Pro)</h2>
+                <div class="parameter-card">
+                    <h3>Clinical Significance</h3>
+                    <p>Proteinuria (excess protein in urine) is a key early indicator of kidney disease, glomerulonephritis, diabetic nephropathy, preeclampsia in pregnancy, or severe urinary tract infection.</p>
+                </div>
+                <h3>Colorimetry Calibration Scale</h3>
+                <div class="color-scale">
+                    <div class="color-block" style="background-color: #e9c46a; color: #333; text-shadow: none;">Negative (&lt;15 mg/dL)</div>
+                    <div class="color-block" style="background-color: #2a9d8f;">Trace (15-30 mg/dL)</div>
+                    <div class="color-block" style="background-color: #264653;">1+ (30 mg/dL)</div>
+                    <div class="color-block" style="background-color: #1d3557;">2+ (100 mg/dL)</div>
+                    <div class="color-block" style="background-color: #0d1b2a;">3+ (300+ mg/dL)</div>
+                </div>
+                <div class="parameter-card">
+                    <h3>AI Reader Technical Specs (KJS-HC-03)</h3>
+                    <ul>
+                        <li><strong>Reaction Time:</strong> 60 Seconds post-dip.</li>
+                        <li><strong>Primary Analyte Sensitive:</strong> Serum Albumin.</li>
+                        <li><strong>Continuous Range:</strong> 0 to 500 mg/dL estimated concentration via polynomial regression model.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="lab-map.html" style="background-color: #0f5c73; color: white; padding: 10px 18px; text-decoration: none; border-radius: 6px; font-weight: bold;">&larr; Back to Strip Map</a>
+                </div>
+            </main>
+        </div>
+        <footer>
+            <p>&copy; 2026 Clinical Laboratory Management Portal. K. J. Somaiya School of Engineering.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urine Glucose Test Parameter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        .parameter-card {
+            background: #ffffff;
+            border-left: 6px solid #0f5c73;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 18px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        .color-scale {
+            display: flex;
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .color-block {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header style="background-color: #0f5c73; padding: 18px 24px; border-bottom: 4px solid #0a3d4d; text-align: center;">
+            <h1 style="color: #ffe08a; margin: 0;">Clinical Diagnostics Portal</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="laboratory-tests.html">Laboratory Tests</a></li>
+                <li><a href="test-price-table.html">Price List</a></li>
+                <li><a href="patient-registration.html">Online Registration</a></li>
+                <li><a href="lab-map.html">Interactive Strip Map</a></li>
+                <li><a href="urine-report.html">AI Diagnostic Report</a></li>
+                <li><a href="gallery.html">Facilities Gallery</a></li>
+            </ul>
+        </nav>
+        <div class="main-container">
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3>AI Colorimetry Note</h3>
+                    <p>Pad 1 on the 10-parameter dipstick utilizes glucose oxidase / peroxidase reaction changing from teal green to dark brown.</p>
+                </div>
+            </aside>
+            <main class="content">
+                <h2>Reagent Pad 1: Glucose (Glu)</h2>
+                <div class="parameter-card">
+                    <h3>Clinical Significance</h3>
+                    <p>Glucose is normally absent in urine. Glycosuria occurs when blood glucose exceeds the renal threshold (approx. 180 mg/dL), commonly caused by uncontrolled Diabetes Mellitus, gestational diabetes, or renal tubule disorders.</p>
+                </div>
+                <h3>Colorimetry Calibration Scale</h3>
+                <div class="color-scale">
+                    <div class="color-block" style="background-color: #00a896;">Negative (0 mg/dL)</div>
+                    <div class="color-block" style="background-color: #83b692;">Trace (100 mg/dL)</div>
+                    <div class="color-block" style="background-color: #5c7f67;">1+ (250 mg/dL)</div>
+                    <div class="color-block" style="background-color: #3b5249;">2+ (500 mg/dL)</div>
+                    <div class="color-block" style="background-color: #1f2d27;">3+ (1000+ mg/dL)</div>
+                </div>
+                <div class="parameter-card">
+                    <h3>AI Reader Technical Specs (KJS-HC-03)</h3>
+                    <ul>
+                        <li><strong>Reaction Time:</strong> Exactly 60 Seconds post-dip.</li>
+                        <li><strong>RGB Wavelength Sensitivity:</strong> Peak green/red channel reflectance ratio shift.</li>
+                        <li><strong>Linearity Range:</strong> 0 to 1000 mg/dL continuous numerical concentration.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="lab-map.html" style="background-color: #0f5c73; color: white; padding: 10px 18px; text-decoration: none; border-radius: 6px; font-weight: bold;">&larr; Back to Strip Map</a>
+                </div>
+            </main>
+        </div>
+        <footer>
+            <p>&copy; 2026 Clinical Laboratory Management Portal. K. J. Somaiya School of Engineering.</p>
+        </footer>
+    </div>
+</body>
+</html>
