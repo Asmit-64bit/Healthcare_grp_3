@@ -20,8 +20,8 @@ All clinical data is maintained locally using browser `localStorage` and JSON st
 | Member Name | Roll Number | Primary Roles & Contributions |
 | :--- | :--- | :--- |
 | **Asmit Samanta** | `16010125221` | Lead architecture & refactoring, authentication system, dashboard & analytics data visualization, patient profile trends, dynamic DOB-age calculation, and UI/UX styling. |
-| **Om Rode** | `16010125212` | Patient directory management, monthly sugar tracking data model, automated average calculation logic, test workflow integration, and documentation. |
-| **Rudraksh Sahane** | `16010125217` | Laboratory image & asset curation, sample patient dataset preparation, patient table sugar metrics, presentation slides preparation (`Healthcare Group-3.pptx`). |
+| **Om Rode** | `16010125212` | Patient directory management, monthly sugar tracking data model, automated average calculation logic, test workflow integration, documentation and presentation slides preparation (`Healthcare Group-3.pptx`). |
+| **Rudraksh Sahane** | `16010125217` | Laboratory image & asset curation, sample patient dataset preparation, patient table sugar metrics. |
 
 ---
 
