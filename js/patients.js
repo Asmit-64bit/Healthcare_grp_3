@@ -170,7 +170,8 @@ function renderPatientsTable(query = "") {
     const m1 = p.month1 != null ? Number(p.month1) : 100;
     const m2 = p.month2 != null ? Number(p.month2) : 105;
     const m3 = p.month3 != null ? Number(p.month3) : 95;
-    const avgSugar = Math.round((m1 + m2 + m3) / 3);
+    const avgSugarVal = calculateAverageSugar(p);
+    const avgSugar = avgSugarVal !== "-" ? Math.round(Number(avgSugarVal)) : Math.round((m1 + m2 + m3) / 3);
 
     let sugarBadgeClass = "badge-normal";
     if (avgSugar > 140) {
@@ -219,12 +220,6 @@ function renderPatientsTable(query = "") {
             Test
           </a>
         </td>
-
-        <td>${escapeHtml(String(month1))}</td>
-        <td>${escapeHtml(String(month2))}</td>
-        <td>${escapeHtml(String(month3))}</td>
-        <td>${averageSugar}</td>
-
       </tr>
     `;
 
