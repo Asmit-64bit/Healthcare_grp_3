@@ -110,7 +110,7 @@ function renderPatientsTable(query = "") {
   if (filtered.length === 0) {
     tbody.append(`
       <tr>
-        <td colspan="7" style="text-align: center; color: #718096; padding: 15px;">
+        <td colspan="12" style="text-align: center; color: #718096; padding: 15px;">
           No matching patients found.
         </td>
       </tr>
@@ -121,6 +121,13 @@ function renderPatientsTable(query = "") {
   filtered.forEach(p => {
     const pTests = tests.filter(t => t.patientId === p.id);
     const lastTest = pTests.length > 0 ? pTests[0].timestamp : "No tests yet";
+
+    const m1=10;
+    const m2=30;
+    const m3=50;
+
+    const minSugar = Math.min(10,30,50);
+    const maxSugar = Math.max(10,30,50);
 
     const tr = `
       <tr>
@@ -140,6 +147,11 @@ function renderPatientsTable(query = "") {
           <a href="patient-profile.html?id=${encodeURIComponent(p.id)}" class="btn btn-outline" style="padding: 3px 8px; font-size: 11px;">Profile</a>
           <a href="new-test.html?patientId=${encodeURIComponent(p.id)}" class="btn btn-primary" style="padding: 3px 8px; font-size: 11px;">Test</a>
         </td>
+        <td>${m1}</td>
+        <td>${m2}</td>
+        <td>${m3}</td>
+        <td>${maxSugar}</td>
+        <td>${minSugar}</td>
       </tr>
     `;
     tbody.append(tr);
