@@ -14,9 +14,14 @@ function loadPatientProfile(patientId) {
   const patient = patients.find(p => p.id === patientId) || patients[0];
   const tests = getTests().filter(t => t.patientId === patient.id);
 
+  const m1 = patient.month1 != null ? Number(patient.month1) : 100;
+  const m2 = patient.month2 != null ? Number(patient.month2) : 105;
+  const m3 = patient.month3 != null ? Number(patient.month3) : 95;
+  const avgSugar = Math.round((m1 + m2 + m3) / 3);
+
   // Update Metadata Elements
   $("#pProfileName").text(patient.name);
-  $("#pProfileMeta").text(`Patient ID: ${patient.id} • ${patient.gender} • ${patient.age} yrs • Registered: ${patient.regDate}`);
+  $("#pProfileMeta").text(`Patient ID: ${patient.id} • ${patient.gender} • ${patient.age} yrs • Registered: ${patient.regDate} • 3-Mo Avg Sugar: ${avgSugar} mg/dL (M1: ${m1}, M2: ${m2}, M3: ${m3})`);
   $("#pNewTestBtn").attr("href", `new-test.html?patientId=${patient.id}`);
 
   $("#pTotalTests").text(tests.length);
