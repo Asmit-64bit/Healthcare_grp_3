@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_USERS = [
-  { id: "USR-1001", name: "Dr. Ninad", email: "doctor@uroscan.demo", password: "demo123", role: "Lead Pathologist" },
+  { id: "USR-1001", name: "Dr. default", email: "doctor@uroscan.demo", password: "demo123", role: "Lead Pathologist" },
   { id: "USR-1002", name: "Dr. Anjali Rao", email: "pathologist@uroscan.demo", password: "demo123", role: "Senior Consultant" }
 ];
 
@@ -59,7 +59,7 @@ function getCurrentUser() {
   if (userStr) {
     try { return JSON.parse(userStr); } catch (e) { }
   }
-  return { name: "Dr. Ninad", email: "doctor@uroscan.demo", role: "Lead Pathologist" };
+  return { name: "Dr. default", email: "doctor@uroscan.demo", role: "Lead Pathologist" };
 }
 
 $(document).ready(function () {
