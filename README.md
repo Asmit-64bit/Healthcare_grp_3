@@ -132,27 +132,6 @@ Healthcare_grp_3/
 
 ---
 
-## Detailed Individual Contributions
-
-### Rudraksh Sahane (`16010125217`)
-* **Image Collection & Integration**: Collected laboratory equipment, testing procedures, and urine strip images to enhance realistic interface presentation.
-* **Patient Data Collection**: Curated sample patient records and contributed the monthly sugar data fields (Month 1, 2, 3) to the dataset.
-* **Table Integration**: Added Month 1, 2, 3 and average sugar columns in the patient directory table.
-* **Presentation**: Created and structured the project slides in [`Healthcare Group-3.pptx`](Healthcare%20Group-3.pptx).
-
-### Om Rode (`16010125212`)
-* **Sugar Tracking Logic**: Developed automated average calculation functions for patient monthly sugar values.
-* **Patient Management**: Contributed to patient directory search, data filtering, and registration workflows.
-* **Documentation**: Drafted initial project documentation and workflow descriptions.
-
-### Asmit Samanta (`16010125221`)
-* **System Architecture & Refactoring**: Designed the unified multi-page structure, navigation flow, and modular JavaScript architecture.
-* **Authentication & Session Manager**: Implemented mock authentication, role-based topbar personalization, and localStorage persistence.
-* **Longitudinal Trend Analytics**: Integrated Chart.js visualizations across dashboard metrics, analytics, and patient profile history.
-* **Dynamic Calculations**: Implemented dynamic DOB-to-age and month conversions, status risk badge color-coding, and data migration routines in `mockData.js`.
-
----
-
 ## Academic Disclaimer & Limitations
 
 > **Academic Prototype Notice**:  
