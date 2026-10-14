@@ -248,8 +248,7 @@ function updateTestReview(testId, status, notes) {
   }
 }
 
-function downloadReportFile(reportId) {
-  const reports = getReports();
+function downloadReportFile(reportId) {  const reports = getReports();
   const report = reports.find(r => r.reportId === reportId || r.testId === reportId) || reports[0];
 
   const htmlContent = `
