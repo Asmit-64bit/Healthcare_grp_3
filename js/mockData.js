@@ -22,7 +22,7 @@ function getDeviceFormattedDate(offsetDays = 0) {
 }
 
 const INITIAL_PATIENTS = [
-  { id: "P-10241", name: "Ramesh Sharma", age: 45, gender: "Male", dob: "1981-05-14", contact: "+91 98201 44512", regDate: getDeviceFormattedDate(30), status: "Active" },
+  { id: "P-10241", name: "Ramesh Sharma", age: 45, gender: "Male", dob: "1981-05-14", contact: "+91 98201 44512",month1:110,month2:120,month3:100, regDate: getDeviceFormattedDate(30), status: "Active" },
   { id: "P-10242", name: "Ananya Iyer", age: 29, gender: "Female", dob: "1997-11-22", contact: "+91 98192 33410", regDate: getDeviceFormattedDate(28), status: "Active" },
   { id: "P-10243", name: "Vikram Malhotra", age: 58, gender: "Male", dob: "1968-03-05", contact: "+91 98334 11299", regDate: getDeviceFormattedDate(25), status: "Active" },
   { id: "P-10244", name: "Priya Deshmukh", age: 34, gender: "Female", dob: "1992-07-19", contact: "+91 97690 88214", regDate: getDeviceFormattedDate(20), status: "Active" },

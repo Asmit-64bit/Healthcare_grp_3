@@ -11,8 +11,25 @@ $(document).ready(function () {
     renderPatientsTable(query);
   });
 
-  // Open Register Modal via jQuery
-  $("#openRegisterModalBtn").on("click", function () {
+
+  const RegisterBtn = document.getElementById("openRegisterModalBtn");
+  if(openRegisterModalBtn){
+    openRegisterModalBtn.addEventListener("click",function(){
+      const nextId="P-"+(10240+getPatients().length+1);
+      document.getElementById("regId").value=nextId;
+      document.getElementById("regName").value="";
+      document.getElementById("regAge").value="40";
+      document.getElementById("regDob").value="1986-05-15";
+      document.getElementById("regContact").value="";
+
+      const registerModal=document.getElementById("registerModal");
+      if(registerModal){
+        registerModal.style.display="flex";
+      }
+    });
+  }
+
+  /*$("#openRegisterModalBtn").on("click", function () {
     const nextId = "P-" + (10240 + getPatients().length + 1);
     $("#regId").val(nextId);
     $("#regName").val("");
@@ -21,8 +38,7 @@ $(document).ready(function () {
     $("#regContact").val("");
     
     $("#registerModal").fadeIn(200).css("display", "flex");
-  });
-
+  });*/
   // Dynamic Age calculation from DOB date selection
   $("#regDob").on("change", function () {
     const dobVal = $(this).val();

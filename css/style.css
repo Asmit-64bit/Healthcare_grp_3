@@ -172,13 +172,16 @@ a {
   border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 15px;
+  position: relative;
+  text-align: right;
 }
 
 .card-title {
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 12px;
-  color: var(--primary-color);
+  color: #1f5fbf;
+  text-align: right;
 }
 
 /* Stats Cards */
