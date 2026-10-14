@@ -83,8 +83,7 @@ Healthcare_grp_3/
 ├── assets/                          # Medical equipment, lab facilities, and strip images
 │   └── images/
 ├── css/                             # Stylesheets
-│   ├── style.css                    # Main design system, colors, badges, components
-│   └── responsive.css               # Mobile and tablet breakpoints
+│   └── style.css                    # Main design system, colors, badges, components
 ├── js/                              # Application controllers & data models
 │   ├── app.js                       # Global auth, topbar profile, toast notifications
 │   ├── mockData.js                  # Initial mock dataset, localStorage migrations, helpers
@@ -124,13 +123,8 @@ Healthcare_grp_3/
      ```bash
      cd Healthcare_grp_3
      ```
-   * **Option A (Recommended)**: Right-click `index.html` and choose **"Open with Live Server"** in VS Code.
-   * **Option B**: Run a simple local Python server:
-     ```bash
-     python -m http.server 8000
-     ```
-     Then open `http://localhost:8000` in your browser.
-   * **Option C**: Directly open `index.html` in any modern web browser (Chrome, Firefox, Edge, Brave).
+   * **Option A**: Right-click `index.html` and choose **"Open with Live Server"** in VS Code.
+   * **Option B**: Directly open `index.html` in any modern web browser (Chrome, Firefox, Edge, Brave).
 3. **Demo Credentials**:
    * **Email**: `doctor@uroscan.demo`
    * **Password**: `demo123`
