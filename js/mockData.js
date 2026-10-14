@@ -22,16 +22,21 @@ function getDeviceFormattedDate(offsetDays = 0) {
 }
 
 const INITIAL_PATIENTS = [
-  { id: "P-10241", name: "Ramesh Sharma", age: 45, gender: "Male", dob: "1981-05-14", contact: "+91 98201 44512",month1:110,month2:120,month3:100, regDate: getDeviceFormattedDate(30), status: "Active" },
-  { id: "P-10242", name: "Ananya Iyer", age: 29, gender: "Female", dob: "1997-11-22", contact: "+91 98192 33410", regDate: getDeviceFormattedDate(28), status: "Active" },
-  { id: "P-10243", name: "Vikram Malhotra", age: 58, gender: "Male", dob: "1968-03-05", contact: "+91 98334 11299", regDate: getDeviceFormattedDate(25), status: "Active" },
-  { id: "P-10244", name: "Priya Deshmukh", age: 34, gender: "Female", dob: "1992-07-19", contact: "+91 97690 88214", regDate: getDeviceFormattedDate(20), status: "Active" },
-  { id: "P-10245", name: "Suresh Gupta", age: 62, gender: "Male", dob: "1964-12-01", contact: "+91 99205 66781", regDate: getDeviceFormattedDate(18), status: "Active" },
-  { id: "P-10246", name: "Sneha Patel", age: 24, gender: "Female", dob: "2002-02-28", contact: "+91 98210 55432", regDate: getDeviceFormattedDate(15), status: "Active" },
-  { id: "P-10247", name: "Rajesh Varma", age: 51, gender: "Male", dob: "1975-09-14", contact: "+91 98691 22345", regDate: getDeviceFormattedDate(10), status: "Active" },
-  { id: "P-10248", name: "Meera Joshi", age: 41, gender: "Female", dob: "1985-04-10", contact: "+91 97022 44321", regDate: getDeviceFormattedDate(8), status: "Active" },
-  { id: "P-10249", name: "Karan Mehta", age: 37, gender: "Male", dob: "1989-10-30", contact: "+91 98200 99887", regDate: getDeviceFormattedDate(5), status: "Active" },
-  { id: "P-10250", name: "Sunita Rao", age: 53, gender: "Female", dob: "1973-06-25", contact: "+91 99304 77654", regDate: getDeviceFormattedDate(1), status: "Active" }
+  { id: "P-10241", name: "Ramesh Sharma", age: 45, gender: "Male", dob: "1981-05-14", contact: "+91 98201 44512", month1: 110, month2: 120, month3: 100, regDate: getDeviceFormattedDate(180), status: "Active" },
+  { id: "P-10242", name: "Ananya Iyer", age: 29, gender: "Female", dob: "1997-11-22", contact: "+91 98192 33410", month1: 105, month2: 115, month3: 95, regDate: getDeviceFormattedDate(150), status: "Active" },
+  { id: "P-10243", name: "Vikram Malhotra", age: 58, gender: "Male", dob: "1968-03-05", contact: "+91 98334 11299", month1: 100, month2: 110, month3: 90, regDate: getDeviceFormattedDate(120), status: "Active" },
+  { id: "P-10244", name: "Priya Deshmukh", age: 34, gender: "Female", dob: "1992-07-19", contact: "+91 97690 88214", month1: 90, month2: 100, month3: 80, regDate: getDeviceFormattedDate(90), status: "Active" },
+  { id: "P-10245", name: "Suresh Gupta", age: 62, gender: "Male", dob: "1964-12-01", contact: "+91 99205 66781", month1: 85, month2: 95, month3: 75, regDate: getDeviceFormattedDate(75), status: "Active" },
+  { id: "P-10246", name: "Sneha Patel", age: 24, gender: "Female", dob: "2002-02-28", contact: "+91 98210 55432", month1: 85, month2: 95, month3: 75, regDate: getDeviceFormattedDate(60), status: "Active" },
+  { id: "P-10247", name: "Rajesh Varma", age: 51, gender: "Male", dob: "1975-09-14", contact: "+91 98691 22345", month1: 80, month2: 90, month3: 70, regDate: getDeviceFormattedDate(45), status: "Active" },
+  { id: "P-10248", name: "Meera Joshi", age: 41, gender: "Female", dob: "1985-04-10", contact: "+91 97022 44321", month1: 75, month2: 85, month3: 65, regDate: getDeviceFormattedDate(30), status: "Active" },
+  { id: "P-10249", name: "Karan Mehta", age: 37, gender: "Male", dob: "1989-10-30", contact: "+91 98200 99887", month1: 70, month2: 80, month3: 60, regDate: getDeviceFormattedDate(15), status: "Active" },
+  { id: "P-10250", name: "Sunita Rao", age: 53, gender: "Female", dob: "1973-06-25", contact: "+91 99304 77654", month1: 65, month2: 75, month3: 55, regDate: getDeviceFormattedDate(3), status: "Active" },
+  { id: "P-10251", name: "Aditya Roy", age: 31, gender: "Male", dob: "1995-03-12", contact: "+91 98765 43210", month1: 145, month2: 155, month3: 160, regDate: getDeviceFormattedDate(100), status: "Active" },
+  { id: "P-10252", name: "Pooja Hegde", age: 27, gender: "Female", dob: "1999-08-20", contact: "+91 98123 45678", month1: 92, month2: 88, month3: 90, regDate: getDeviceFormattedDate(85), status: "Active" },
+  { id: "P-10253", name: "Amitabh Banerjee", age: 68, gender: "Male", dob: "1958-01-15", contact: "+91 99887 76655", month1: 160, month2: 150, month3: 142, regDate: getDeviceFormattedDate(140), status: "Active" },
+  { id: "P-10254", name: "Divya Nair", age: 39, gender: "Female", dob: "1987-09-08", contact: "+91 97654 32109", month1: 115, month2: 118, month3: 112, regDate: getDeviceFormattedDate(110), status: "Active" },
+  { id: "P-10255", name: "Nikhil Kulkarni", age: 49, gender: "Male", dob: "1977-11-04", contact: "+91 98450 12345", month1: 102, month2: 104, month3: 98, regDate: getDeviceFormattedDate(65), status: "Active" }
 ];
 
 const INITIAL_TESTS = [
@@ -120,9 +125,37 @@ function buildInitialReports() {
 }
 
 function initMockData() {
-  if (!localStorage.getItem("uroscan_patients")) {
+  const existingPatientsStr = localStorage.getItem("uroscan_patients");
+  if (!existingPatientsStr) {
     localStorage.setItem("uroscan_patients", JSON.stringify(INITIAL_PATIENTS));
+  } else {
+    try {
+      const stored = JSON.parse(existingPatientsStr);
+      let updated = false;
+      stored.forEach(p => {
+        if (p.month1 === undefined || p.month2 === undefined || p.month3 === undefined) {
+          const initP = INITIAL_PATIENTS.find(ip => ip.id === p.id);
+          p.month1 = initP && initP.month1 !== undefined ? initP.month1 : 100;
+          p.month2 = initP && initP.month2 !== undefined ? initP.month2 : 105;
+          p.month3 = initP && initP.month3 !== undefined ? initP.month3 : 95;
+          updated = true;
+        }
+      });
+      // Append any new initial patients missing from localStorage
+      INITIAL_PATIENTS.forEach(initP => {
+        if (!stored.some(p => p.id === initP.id)) {
+          stored.push(initP);
+          updated = true;
+        }
+      });
+      if (updated) {
+        localStorage.setItem("uroscan_patients", JSON.stringify(stored));
+      }
+    } catch (e) {
+      localStorage.setItem("uroscan_patients", JSON.stringify(INITIAL_PATIENTS));
+    }
   }
+
   if (!localStorage.getItem("uroscan_tests")) {
     localStorage.setItem("uroscan_tests", JSON.stringify(INITIAL_TESTS));
   }
@@ -157,6 +190,9 @@ function getReports() {
 function savePatient(patientObj) {
   const patients = getPatients();
   if (!patientObj.regDate) patientObj.regDate = getDeviceFormattedDate(0);
+  if (patientObj.month1 === undefined) patientObj.month1 = 100;
+  if (patientObj.month2 === undefined) patientObj.month2 = 105;
+  if (patientObj.month3 === undefined) patientObj.month3 = 95;
   patients.unshift(patientObj);
   localStorage.setItem("uroscan_patients", JSON.stringify(patients));
 }

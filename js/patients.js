@@ -12,33 +12,20 @@ $(document).ready(function () {
   });
 
 
-  const RegisterBtn = document.getElementById("openRegisterModalBtn");
-  if(openRegisterModalBtn){
-    openRegisterModalBtn.addEventListener("click",function(){
-      const nextId="P-"+(10240+getPatients().length+1);
-      document.getElementById("regId").value=nextId;
-      document.getElementById("regName").value="";
-      document.getElementById("regAge").value="40";
-      document.getElementById("regDob").value="1986-05-15";
-      document.getElementById("regContact").value="";
-
-      const registerModal=document.getElementById("registerModal");
-      if(registerModal){
-        registerModal.style.display="flex";
-      }
-    });
-  }
-
-  /*$("#openRegisterModalBtn").on("click", function () {
+  $("#openRegisterModalBtn").on("click", function () {
     const nextId = "P-" + (10240 + getPatients().length + 1);
     $("#regId").val(nextId);
     $("#regName").val("");
     $("#regAge").val("40");
     $("#regDob").val("1986-05-15");
     $("#regContact").val("");
+    $("#regMonth1").val("100");
+    $("#regMonth2").val("105");
+    $("#regMonth3").val("95");
     
     $("#registerModal").fadeIn(200).css("display", "flex");
-  });*/
+  });
+
   // Dynamic Age calculation from DOB date selection
   $("#regDob").on("change", function () {
     const dobVal = $(this).val();
@@ -66,6 +53,9 @@ $(document).ready(function () {
     const dob = $("#regDob").val();
     const contact = $("#regContact").val().trim();
     const id = $("#regId").val();
+    const month1 = Number($("#regMonth1").val()) || 100;
+    const month2 = Number($("#regMonth2").val()) || 105;
+    const month3 = Number($("#regMonth3").val()) || 95;
 
     if (!name || !age || !contact || !dob) {
       showToast("Validation Error", "Please fill in all required patient fields.");
@@ -79,6 +69,9 @@ $(document).ready(function () {
       gender: gender,
       dob: dob,
       contact: contact,
+      month1: month1,
+      month2: month2,
+      month3: month3,
       regDate: getDeviceFormattedDate(0),
       status: "Active"
     };
@@ -110,7 +103,7 @@ function renderPatientsTable(query = "") {
   if (filtered.length === 0) {
     tbody.append(`
       <tr>
-        <td colspan="7" style="text-align: center; color: #718096; padding: 15px;">
+        <td colspan="11" style="text-align: center; color: #718096; padding: 15px;">
           No matching patients found.
         </td>
       </tr>
@@ -122,6 +115,18 @@ function renderPatientsTable(query = "") {
     const pTests = tests.filter(t => t.patientId === p.id);
     const lastTest = pTests.length > 0 ? pTests[0].timestamp : "No tests yet";
 
+    const m1 = p.month1 != null ? Number(p.month1) : 100;
+    const m2 = p.month2 != null ? Number(p.month2) : 105;
+    const m3 = p.month3 != null ? Number(p.month3) : 95;
+    const avgSugar = Math.round((m1 + m2 + m3) / 3);
+
+    let sugarBadgeClass = "badge-normal";
+    if (avgSugar > 140) {
+      sugarBadgeClass = "badge-critical";
+    } else if (avgSugar >= 115) {
+      sugarBadgeClass = "badge-review";
+    }
+
     const tr = `
       <tr>
         <td><strong>${escapeHtml(p.id)}</strong></td>
@@ -130,11 +135,19 @@ function renderPatientsTable(query = "") {
             ${escapeHtml(p.name)}
           </a>
         </td>
-        <td>${p.age} yrs / ${escapeHtml(p.gender)}</td>
+        <td>${p.age} yrs / ${getPatientAgeInMonths(p)} mos / ${escapeHtml(p.gender)}</td>
         <td>${escapeHtml(p.contact)}</td>
+        <td><strong style="color: #2b6cb0;">${m1}</strong> <span style="font-size: 11px; color: #718096;">mg/dL</span></td>
+        <td><strong style="color: #2b6cb0;">${m2}</strong> <span style="font-size: 11px; color: #718096;">mg/dL</span></td>
+        <td><strong style="color: #2b6cb0;">${m3}</strong> <span style="font-size: 11px; color: #718096;">mg/dL</span></td>
+        <td>
+          <span class="badge ${sugarBadgeClass}">
+            <span class="badge-dot"></span> ${avgSugar} mg/dL
+          </span>
+        </td>
         <td>${escapeHtml(lastTest)}</td>
         <td>
-          <span class="badge badge-normal">Active</span>
+          <span class="badge badge-normal">${escapeHtml(p.status || 'Active')}</span>
         </td>
         <td>
           <a href="patient-profile.html?id=${encodeURIComponent(p.id)}" class="btn btn-outline" style="padding: 3px 8px; font-size: 11px;">Profile</a>
@@ -144,4 +157,17 @@ function renderPatientsTable(query = "") {
     `;
     tbody.append(tr);
   });
+}
+
+function getPatientAgeInMonths(patient) {
+  if (!patient.dob) return Math.max(0, Number(patient.age) || 0) * 12;
+
+  const birthDate = new Date(`${patient.dob}T00:00:00`);
+  if (Number.isNaN(birthDate.getTime())) return Math.max(0, Number(patient.age) || 0) * 12;
+
+  const today = new Date();
+  let months = (today.getFullYear() - birthDate.getFullYear()) * 12 +
+    today.getMonth() - birthDate.getMonth();
+  if (today.getDate() < birthDate.getDate()) months--;
+  return Math.max(0, months);
 }
